@@ -12,7 +12,7 @@
         <dependency>
             <groupId>com.parqco</groupId>
             <artifactId>spinalcord</artifactId>
-            <version>0.3-SNAPSHOT</version>
+            <version>0.4-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
