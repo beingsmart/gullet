@@ -5,6 +5,7 @@ import org.joda.time.DateTime;
 import org.jongo.Jongo;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import queries.Find;
 import store.GenericMongoStore;
@@ -14,6 +15,7 @@ import java.io.IOException;
 /**
  * Created by sarath on 09/10/16.
  */
+@Ignore("Ignore from build")
 public class UserInfoTest {
 
     private UserInfo userInfo;
