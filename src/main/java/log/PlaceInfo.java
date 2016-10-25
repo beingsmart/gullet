@@ -18,32 +18,15 @@ public class PlaceInfo extends LogInfo {
         return "location:" + location.get() + " actionTime:" + actionTime + "eventType: " + eventType.name();
     }
 
-    public class Location {
-        public static final int SCALE_TO_10_M = 4;
-        Double lat;
-        Double lng;
-        String placeid;
-
-        public Location(Double lat, Double lng) {
-            this.lat = lat;
-            this.lng = lng;
-            this.placeid = generatePlaceid();
-        }
-
-        private String generatePlaceid() {
-            String lat = new BigDecimal(this.lat).setScale(SCALE_TO_10_M, BigDecimal.ROUND_CEILING).toString().replace(".", "");
-            String lng = new BigDecimal(this.lng).setScale(SCALE_TO_10_M, BigDecimal.ROUND_CEILING).toString().replace(".", "");
-            return lat.concat(lng);
-        }
-
-        String get() {
-            return "lat:" + lat + " lng:" + lng + " placeid:" + placeid;
-        }
-    }
-
     public PlaceInfo(DateTime actionTime, Double lat, Double lng) {
         this.actionTime = actionTime;
         this.location = new Location(lat, lng);
+        this.eventType = EventType.UNIQUE_PARKING_LOCATIONS;
+    }
+
+    public PlaceInfo(DateTime actionTime, Location location) {
+        this.actionTime = actionTime;
+        this.location = location;
         this.eventType = EventType.UNIQUE_PARKING_LOCATIONS;
     }
 

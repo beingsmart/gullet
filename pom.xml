@@ -4,7 +4,7 @@
 
     <groupId>com.parqco</groupId>
     <artifactId>gullet</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.3-SNAPSHOT</version>
 
     <properties>
         <gitrepo.name>gullet</gitrepo.name>
