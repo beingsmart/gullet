@@ -9,7 +9,7 @@ public class Location {
     public static final int SCALE_TO_10_M = 4;
     Double lat;
     Double lng;
-    String placeid;
+    public String placeid;
 
     public Location(Double lat, Double lng) {
         this.lat = lat;
