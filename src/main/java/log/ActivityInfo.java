@@ -5,28 +5,29 @@ import events.EventType;
 import org.joda.time.DateTime;
 import org.jongo.Jongo;
 import queries.Find;
+import queries.Update;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by sarath on 08/10/16.
  */
 public class ActivityInfo extends LogInfo {
     private final String userid;
-    private final long placeid;
+    private final Location location;
 
-    public ActivityInfo(String userid, long placeid, DateTime actionTime, EventType eventType) {
+    public ActivityInfo(String userid, Location location, DateTime actionTime, EventType eventType) {
 
         this.userid = userid;
-        this.placeid = placeid;
+        this.location = location;
         this.actionTime = actionTime;
         this.eventType = eventType;
     }
 
     public String getUserid() {
         return userid;
-    }
-
-    public long getPlaceid() {
-        return placeid;
     }
 
     public DateTime actionTime() {
@@ -39,7 +40,7 @@ public class ActivityInfo extends LogInfo {
 
     public String createEvent(Jongo store) throws JsonProcessingException {
         Find find = new Find("userid", this.userid)
-                .and("placeid", placeid)
+                .and("placeid", location.placeid)
                 .and("activity_time", actionTime.getMillis());
         createEvent(store, find);
         return null;
@@ -54,6 +55,7 @@ public class ActivityInfo extends LogInfo {
     }
 
     public String logInfo() {
-        return "userid:" + userid + " placeid:" + placeid + " actionTime:" + actionTime.getMillis() + " eventType:" + eventType.name();
+        return "userid:" + userid + " placeid:" + location.placeid + " actionTime:" + actionTime.getMillis()
+                + " eventType:" + eventType.name();
     }
 }

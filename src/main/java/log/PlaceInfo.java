@@ -5,8 +5,11 @@ import events.EventType;
 import org.joda.time.DateTime;
 import org.jongo.Jongo;
 import queries.Find;
+import queries.Update;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by sarath on 06/10/16.
@@ -48,5 +51,20 @@ public class PlaceInfo extends LogInfo {
         return null;
     }
 
+    String updateQuery(Find find, long count) throws JsonProcessingException {
+        Update $set = new Update(find, "$set");
+        if (count == 0 && !eventType.get().equals("DEETS")) {
+            $set.setValue("first_seen_time", actionTime.getMillis());
+        }
+        List<Double> coords = Arrays.asList(location.lng, location.lat);
+        Double[] coordinates = new Double[coords.size()];
+        coords.toArray(coordinates);
+        $set
+                .setValue("last_seen_time", actionTime.getMillis())
+                .setValue("type", eventType.name())
+                .setValue("coordinates", coordinates)
+                .incBy("times_seen", 1);
+        return $set.query();
+    }
 
 }

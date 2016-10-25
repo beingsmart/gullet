@@ -33,19 +33,19 @@ public class ActivityInfoTest {
     @Test
     public void createEvent() throws Exception {
         String userid = "1abc123";
-        long placeid = 1231111812222L;
+        Location location = new Location(123.1111, 81.2222);
 
         //APP OPENED
-        ActivityInfo appOpenActivity = new ActivityInfo(userid, placeid, DateTime.now(), EventType.APP_OPEN);
+        ActivityInfo appOpenActivity = new ActivityInfo(userid, location, DateTime.now(), EventType.APP_OPEN);
         appOpenActivity.createEvent(j);
         //PARKING
-        ActivityInfo parkingActivity = new ActivityInfo(userid, placeid, DateTime.now(), EventType.PARKING);
+        ActivityInfo parkingActivity = new ActivityInfo(userid, location, DateTime.now(), EventType.PARKING);
         parkingActivity.createEvent(j);
         //AD CLICK
-        ActivityInfo adClickActivity = new ActivityInfo(userid, placeid, DateTime.now(), EventType.AD_CLICK);
+        ActivityInfo adClickActivity = new ActivityInfo(userid, location, DateTime.now(), EventType.AD_CLICK);
         adClickActivity.createEvent(j);
         //VACATING
-        ActivityInfo vacatingActivity = new ActivityInfo(userid, placeid, DateTime.now(), EventType.VACATING);
+        ActivityInfo vacatingActivity = new ActivityInfo(userid, location, DateTime.now(), EventType.VACATING);
         vacatingActivity.createEvent(j);
 
     }
